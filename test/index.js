@@ -17,7 +17,7 @@ const spider = require('../index.js');
 
 spider.setProcesser({
   ['getGoogleSearchResult']: async ({axios}, params) => {
-    let resp = await axios.get(`https://www.twitter.com/search?q=${params}`);
+    let resp = await axios.get(`https://www.google.com/search?q=${params}`);
     if (resp.status === 200) {
       return resp.data;
     } else {
