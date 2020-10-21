@@ -22,7 +22,7 @@ const spider = require('gz-spider');
 
 // 每一个爬虫逻辑是一个processer，都要注册进来
 spider.setProcesser({
-  ['getUserInfo']: async (fetcher, params) => {
+  ['getGoogleSearchResult']: async (fetcher, params) => {
     // fetcher.page是原始的puppeteer page，可以直接用于打开页面
     let resp = await fetcher.axios.get(`https://www.google.com/search?q=${params}`);
 
@@ -42,7 +42,7 @@ spider.setProcesser({
 });
 
 // 开爬
-spider.getData('getUserInfo', params).then(userInfo => {
+spider.getData('getGoogleSearchResult', params).then(userInfo => {
   console.log(userInfo);
 });
 

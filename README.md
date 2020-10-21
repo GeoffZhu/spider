@@ -24,7 +24,7 @@ const spider = require('gz-spider');
 
 // All your spider code register in Processer
 spider.setProcesser({
-  ['getUserInfo']: async (fetcher, params) => {
+  ['getGoogleSearchResult']: async (fetcher, params) => {
     // fetcher.page is original puppeteer page 
     let resp = await fetcher.axios.get(`https://www.google.com/search?q=${params}`);
 
@@ -44,7 +44,7 @@ spider.setProcesser({
 });
 
 // Get data
-spider.getData('getUserInfo', params).then(userInfo => {
+spider.getData('getGoogleSearchResult', params).then(userInfo => {
   console.log(userInfo);
 });
 
