@@ -119,3 +119,6 @@ while (true) {
   });
 }
 ```
+## License
+
+[MIT](https://opensource.org/licenses/MIT)

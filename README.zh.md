@@ -131,3 +131,5 @@ fetcher抓取器，其中包含常用的http和puppeteer，并且可以挂各种
 strategy策略中心，负责配置爬取失败后的各种策略。
 processer负责从原始数据结构处理为目标数据的过程，也是爬虫框架用户要写的部分
 
+## License
+[MIT](https://opensource.org/licenses/MIT)
