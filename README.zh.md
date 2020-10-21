@@ -3,8 +3,8 @@
 一个基于Puppeteer和Axios的NodeJs爬虫框架
 
 ## 特性
-- IP代理
-- 支持重试
+- 可配置代理
+- 支持任务重试
 - 支持Puppeteer
 - 异步队列服务友好
 - 多进程友好
@@ -20,7 +20,7 @@ npm i gz-spider --save
 ``` javascript
 const spider = require('gz-spider');
 
-// 每一个爬虫逻辑是一个processer，都要注册进来
+// 每个爬虫是一个方法，需要通过setProcesser注册
 spider.setProcesser({
   ['getGoogleSearchResult']: async (fetcher, params) => {
     // fetcher.page是原始的puppeteer page，可以直接用于打开页面
@@ -41,7 +41,7 @@ spider.setProcesser({
   }
 });
 
-// 开爬
+// 开始爬取
 spider.getData('getGoogleSearchResult', params).then(userInfo => {
   console.log(userInfo);
 });
