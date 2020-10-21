@@ -8,12 +8,12 @@ const BROWSER_ARGS = [
   '--no-sandbox',
   '--ignore-certificate-errors',
   '--window-size=1366,768',
-  '--enable-automation'
-]
+  '--enable-automation',
+];
 
 let config = {
   headless: true,
-  axiosTimeout: 5000
+  axiosTimeout: 5000,
 };
 
 class Fetcher {
@@ -23,13 +23,13 @@ class Fetcher {
       browser: null,
       page: null,
       axios: null,
-      timeOut: null
-    }
+      timeOut: null,
+    };
   }
 
   async init() {
     let { proxy, state } = this;
-    
+
     if (config.proxyTimeout) {
       state.timeOut = Date.now() + config.proxyTimeout;
     } else {
@@ -39,18 +39,17 @@ class Fetcher {
     if (proxy.host && proxy.port) {
       state.axios = axios.create({ proxy, timeout: config.axiosTimeout });
       state.browser = await puppeteer.launch({
-        args: [
-          ...BROWSER_ARGS,
-          `--proxy-server=${proxy.host}:${proxy.port}`
-        ],
-        headless: config.headless
+        args: [...BROWSER_ARGS, `--proxy-server=${proxy.host}:${proxy.port}`],
+        headless: config.headless,
       });
-      console.log(`LOG: Create new fetcher with proxy ${proxy.host}:${proxy.port}`);
+      console.log(
+        `LOG: Create new fetcher with proxy ${proxy.host}:${proxy.port}`
+      );
     } else {
       state.axios = axios.create({ timeout: config.axiosTimeout });
       state.browser = await puppeteer.launch({
         args: BROWSER_ARGS,
-        headless: config.headless
+        headless: config.headless,
       });
     }
 
@@ -88,7 +87,7 @@ const resetFetcherInstance = async () => {
     if (typeof config.proxy === 'function') {
       let { host, port } = await config.proxy();
       fetcherInstance = new Fetcher({ host, port });
-    } else if(typeof config.proxy === 'object') {
+    } else if (typeof config.proxy === 'object') {
       let { host, port } = config.proxy;
       fetcherInstance = new Fetcher({ host, port });
     } else {
@@ -100,18 +99,21 @@ const resetFetcherInstance = async () => {
   }
 
   await fetcherInstance.init();
-  
+
   return fetcherInstance;
-}
+};
 
 const getFetcherInstance = async (forceReset = false) => {
-  if (fetcherInstance && Date.now() <= fetcherInstance.state.timeOut && !forceReset) {
+  if (
+    fetcherInstance &&
+    Date.now() <= fetcherInstance.state.timeOut &&
+    !forceReset
+  ) {
     return fetcherInstance;
   } else {
     return await resetFetcherInstance();
   }
-}
-
+};
 
 utils.cleanup(async () => {
   if (fetcherInstance) await fetcherInstance.destroy();
@@ -123,7 +125,7 @@ module.exports = {
   setConfig(userConfig) {
     config = {
       ...config,
-      ...userConfig
+      ...userConfig,
     };
-  }
-}
+  },
+};

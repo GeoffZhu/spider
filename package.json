@@ -1,8 +1,9 @@
 {
   "name": "gz-spider",
   "version": "0.0.1",
-  "description": "sipder framework",
+  "description": "web sipder framework",
   "main": "index.js",
+  "author": "geoffzhu",
   "scripts": {
     "test": "node ./test/index.js"
   },

@@ -1,4 +1,3 @@
-
 const strategy = require('./strategy');
 const fetcher = require('./fetcher');
 
@@ -13,12 +12,12 @@ const spider = {
   setProcesser(processers) {
     this.processers = {
       ...this.processers,
-      ...processers
-    }
+      ...processers,
+    };
   },
   getData(processerKey, params) {
     return strategy.get(this.processers[processerKey], params);
-  }
+  },
 };
 
 module.exports = spider;

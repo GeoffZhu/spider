@@ -1,6 +1,6 @@
 # gz-spider
 
-一个基于Puppeteer和Axios的NodeJs爬虫框架。
+一个基于Puppeteer和Axios的NodeJs爬虫框架
 
 ## 特性
 - IP代理

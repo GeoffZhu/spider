@@ -1,5 +1,7 @@
 # gz-spider
 
+[中文文档](https://github.com/GeoffZhu/spider/blob/master/README.zh.md)
+
 A web spider framework for NodeJs, base on Puppeteer & Axios;
 
 ## Feture

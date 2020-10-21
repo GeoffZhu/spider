@@ -1,7 +1,7 @@
 const fetcher = require('./fetcher');
 
 let config = {
-  retryTimes: 1,
+  retryTimes: 1
 };
 
 const get = async (processer, ...args) => {

@@ -1,5 +1,4 @@
 function cleanup(callback) {
-
   // attach user callback to the process event emitter
   // if no callback, it will still exit gracefully on Ctrl-C
   callback = callback || noop;
@@ -16,13 +15,13 @@ function cleanup(callback) {
   });
 
   //catch uncaught exceptions, trace, then exit normally
-  process.on('uncaughtException', function(e) {
+  process.on('uncaughtException', function (e) {
     console.error(e);
     callback();
     process.exit();
   });
-};
+}
 
 module.exports = {
-  cleanup
-}
+  cleanup,
+};
