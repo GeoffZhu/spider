@@ -50,6 +50,7 @@ class Fetcher {
       state.browser = await puppeteer.launch({
         args: BROWSER_ARGS,
         headless: config.headless,
+        defaultViewport: null
       });
     }
 
