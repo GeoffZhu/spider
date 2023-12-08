@@ -9,11 +9,16 @@ const spider = {
   setFetcher(config) {
     fetcher.setConfig(config);
   },
-  setProcesser(processers) {
-    this.processers = {
-      ...this.processers,
-      ...processers,
-    };
+  setProcesser(name, processer) {
+    this.processers[name] = processer
+  },
+  setProcessers(processers) {
+    Object.keys(processers).forEach(name => {
+      this.setProcesser(name, processers[name])
+    })
+  },
+  getAllProcessers() {
+    return Object.keys(this.processers)
   },
   getData(processerKey, params) {
     return strategy.get(this.processers[processerKey], params);

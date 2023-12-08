@@ -8,7 +8,7 @@ const BROWSER_ARGS = [
   '--no-sandbox',
   '--ignore-certificate-errors',
   '--window-size=1366,768',
-  '--enable-automation',
+  // '--enable-automation',
 ];
 
 let config = {
@@ -41,6 +41,8 @@ class Fetcher {
       state.browser = await puppeteer.launch({
         args: [...BROWSER_ARGS, `--proxy-server=${proxy.host}:${proxy.port}`],
         headless: config.headless,
+        defaultViewport: null,
+        ignoreDefaultArgs: ['--enable-automation']
       });
       console.log(
         `LOG: Create new fetcher with proxy ${proxy.host}:${proxy.port}`
@@ -50,7 +52,8 @@ class Fetcher {
       state.browser = await puppeteer.launch({
         args: BROWSER_ARGS,
         headless: config.headless,
-        defaultViewport: null
+        defaultViewport: null,
+        ignoreDefaultArgs: ['--enable-automation']
       });
     }
 
